@@ -209,6 +209,7 @@
       inset: 0;
       background: var(--bg);
       opacity: 0;
+      --dest: #0e0e0e;
     }
     .fx-glitch .g-slice {
       position: absolute;
@@ -221,9 +222,10 @@
     }
     .fx-glitch.run .g-slice { animation: glitchSlice 0.5s steps(1) forwards; }
     @keyframes glitchBase {
-      0%  { opacity: 1; }
-      80% { opacity: 1; }
-      100%{ opacity: 1; background: var(--ink); }
+      0%  { opacity: 1; background: var(--bg); }
+      40% { background: var(--bg); }
+      70% { background: var(--ink); }
+      100%{ opacity: 1; background: var(--dest); }
     }
     @keyframes glitchSlice {
       0%  { transform: translateX(0); opacity: 0; }
@@ -249,11 +251,11 @@
       transform-origin: center;
     }
     .fx-ink.run {
-      animation: inkSpread 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+      animation: inkSpread 0.65s cubic-bezier(0.4,0,0.2,1) forwards;
     }
     @keyframes inkSpread {
       0%   { transform: scale(0); opacity: 1; }
-      100% { transform: scale(300); opacity: 1; }
+      100% { transform: scale(320); opacity: 1; }
     }
 
 
@@ -325,7 +327,7 @@
       <div class="projects">
 
         <a class="card"
-           data-href="https://dodikap1.github.io/BLOG/"
+           data-href="https://dodikap1.github.io/BLOG/" data-color="#0d1b2a"
            data-fx="glitch">
           <span class="card-fx">Glitch</span>
           <span class="card-tag">Personal brand</span>
@@ -335,7 +337,7 @@
         </a>
 
         <a class="card"
-           data-href="https://dodikap1.github.io/RetroRoster/"
+           data-href="https://dodikap1.github.io/RetroRoster/" data-color="#0a1a0a"
            data-fx="ink">
           <span class="card-fx">Ink</span>
           <span class="card-tag">E-commerce</span>
@@ -345,7 +347,7 @@
         </a>
 
         <a class="card"
-           data-href="https://dodikap1.github.io/cadencecalendar"
+           data-href="https://dodikap1.github.io/cadencecalendar" data-color="#0f1b2d"
            data-fx="glitch">
           <span class="card-fx">Glitch</span>
           <span class="card-tag">SaaS tool</span>
@@ -355,7 +357,7 @@
         </a>
 
         <a class="card"
-           data-href="https://dodikap1.github.io/London-Live/"
+           data-href="https://dodikap1.github.io/London-Live/" data-color="#1a2332"
            data-fx="ink">
           <span class="card-fx">Ink</span>
           <span class="card-tag">Events</span>
@@ -365,7 +367,7 @@
         </a>
 
         <a class="card"
-           data-href="https://dodikap1.github.io/MAINBunchNBean/"
+           data-href="https://dodikap1.github.io/MAINBunchNBean/" data-color="#f5e8e4"
            data-fx="blinds">
           <span class="card-fx">Blinds</span>
           <span class="card-tag">Floristry</span>
@@ -375,7 +377,7 @@
         </a>
 
         <a class="card"
-           data-href="https://dodikap1.github.io/Great-Exhibition-road-festival-programme/"
+           data-href="https://dodikap1.github.io/Great-Exhibition-road-festival-programme/" data-color="#f0f2f5"
            data-fx="blinds">
           <span class="card-fx">Blinds</span>
           <span class="card-tag">Culture</span>
@@ -405,16 +407,18 @@
     // Transitions
     const overlay = document.getElementById('overlay');
 
-    function runFx(fxName, clickX, clickY, url) {
+    function runFx(fxName, clickX, clickY, url, color) {
       overlay.style.pointerEvents = 'all';
 
       if (fxName === 'glitch') {
         const el = document.getElementById('fx-glitch');
+        el.style.setProperty('--dest', color);
         el.classList.add('run');
         setTimeout(() => window.location.href = url, 460);
 
       } else if (fxName === 'ink') {
         const el = document.getElementById('fx-ink');
+        el.style.background = color;
         el.style.left = (clickX - 5) + 'px';
         el.style.top  = (clickY - 5) + 'px';
         el.classList.add('run');
@@ -422,6 +426,7 @@
 
       } else if (fxName === 'blinds') {
         const el = document.getElementById('fx-blinds');
+        el.querySelectorAll('.blind').forEach(b => b.style.background = color);
         el.classList.add('run');
         setTimeout(() => window.location.href = url, 620);
       }
@@ -430,12 +435,13 @@
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', function(e) {
         e.preventDefault();
-        const url = this.dataset.href;
-        const fx  = this.dataset.fx;
-        const rect = this.getBoundingClientRect();
+        const url   = this.dataset.href;
+        const fx    = this.dataset.fx;
+        const color = this.dataset.color || '#0e0e0e';
+        const rect  = this.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top  + rect.height / 2;
-        runFx(fx, cx, cy, url);
+        runFx(fx, cx, cy, url, color);
       });
     });
   </script>
