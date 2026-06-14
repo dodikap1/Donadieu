@@ -414,7 +414,7 @@
         const el = document.getElementById('fx-glitch');
         el.style.setProperty('--dest', color);
         el.classList.add('run');
-        setTimeout(() => window.location.href = url, 460);
+        setTimeout(() => { window.open(url, '_blank'); resetOverlay(); }, 460);
 
       } else if (fxName === 'ink') {
         const el = document.getElementById('fx-ink');
@@ -422,14 +422,38 @@
         el.style.left = (clickX - 5) + 'px';
         el.style.top  = (clickY - 5) + 'px';
         el.classList.add('run');
-        setTimeout(() => window.location.href = url, 580);
+        setTimeout(() => { window.open(url, '_blank'); resetOverlay(); }, 580);
 
       } else if (fxName === 'blinds') {
         const el = document.getElementById('fx-blinds');
         el.querySelectorAll('.blind').forEach(b => b.style.background = color);
         el.classList.add('run');
-        setTimeout(() => window.location.href = url, 620);
+        setTimeout(() => { window.open(url, '_blank'); resetOverlay(); }, 620);
       }
+    }
+
+    function resetOverlay() {
+      setTimeout(() => {
+        document.querySelectorAll('#fx-glitch, #fx-ink, #fx-blinds').forEach(el => {
+          el.classList.remove('run');
+          void el.offsetWidth; // force reflow
+        });
+        document.getElementById('fx-ink').style.background = '';
+        document.getElementById('fx-blinds').querySelectorAll('.blind').forEach(b => b.style.background = '');
+        overlay.style.pointerEvents = 'none';
+      }, 200);
+    }
+
+
+    function resetOverlay() {
+      setTimeout(() => {
+        document.getElementById('fx-glitch').classList.remove('run');
+        document.getElementById('fx-ink').classList.remove('run');
+        document.getElementById('fx-blinds').classList.remove('run');
+        document.getElementById('fx-ink').style.background = '#0e0e0e';
+        document.getElementById('fx-blinds').querySelectorAll('.blind').forEach(b => b.style.background = '');
+        overlay.style.pointerEvents = 'none';
+      }, 400);
     }
 
     document.querySelectorAll('.card').forEach(card => {
