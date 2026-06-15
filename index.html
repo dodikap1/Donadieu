@@ -29,139 +29,147 @@
     }
 
     #overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
-      overflow: hidden;
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; overflow: hidden;
     }
 
     .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      min-height: 100vh; display: flex; flex-direction: column;
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem;
     }
 
     main { flex: 1; padding: 2.5rem 0 3rem; }
 
     header {
-      padding: 2.5rem 0 0.6rem;
-      border-bottom: 1.5px solid var(--ink);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      padding: 2.5rem 0 0.6rem; border-bottom: 1.5px solid var(--ink);
+      display: flex; align-items: flex-end; justify-content: space-between;
     }
 
     .logo {
       font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      letter-spacing: 0.03em;
-      line-height: 1;
-      color: var(--ink);
+      font-size: clamp(2.8rem, 6vw, 5rem); letter-spacing: 0.03em; line-height: 1; color: var(--ink);
     }
 
     .header-meta {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      padding-bottom: 0.3rem;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-muted); padding-bottom: 0.3rem;
     }
 
     .grid-label {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 1.2rem;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 1.2rem;
     }
 
     .projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-top: 0.5px solid var(--rule);
-      border-left: 0.5px solid var(--rule);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 0.5px solid var(--rule); border-left: 0.5px solid var(--rule);
     }
 
     .card {
-      border-right: 0.5px solid var(--rule);
-      border-bottom: 0.5px solid var(--rule);
-      padding: 1.8rem 1.6rem 1.6rem;
-      cursor: pointer;
-      position: relative;
-      background: var(--white);
-      transition: background 0.15s;
-      text-decoration: none;
-      display: block;
-      overflow: hidden;
-      -webkit-tap-highlight-color: transparent;
+      border-right: 0.5px solid var(--rule); border-bottom: 0.5px solid var(--rule);
+      padding: 1.8rem 1.6rem 1.6rem; cursor: pointer; position: relative;
+      background: var(--white); transition: background 0.15s; text-decoration: none;
+      display: block; overflow: hidden; -webkit-tap-highlight-color: transparent;
     }
 
     .card:hover { background: var(--accent-light); }
 
     .card-tag {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      display: block;
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem; display: block;
     }
 
     .card-name {
       font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      letter-spacing: 0.02em;
-      line-height: 1;
-      color: var(--ink);
-      margin-bottom: 0.7rem;
+      font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: 0.02em;
+      line-height: 1; color: var(--ink); margin-bottom: 0.7rem;
     }
 
-    .card-desc {
-      font-size: 12px;
-      color: var(--ink-muted);
-      line-height: 1.6;
-      font-weight: 300;
-    }
+    .card-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
 
     .card-arrow {
-      position: absolute;
-      bottom: 1.4rem;
-      right: 1.4rem;
-      font-size: 18px;
-      color: var(--rule);
-      transition: color 0.15s, transform 0.15s;
+      position: absolute; bottom: 1.4rem; right: 1.4rem;
+      font-size: 18px; color: var(--rule); transition: color 0.15s, transform 0.15s;
     }
-
     .card:hover .card-arrow { color: var(--accent); transform: translate(2px, -2px); }
 
     .card-fx {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 9px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--rule);
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rule);
     }
 
+    /* DELETE BUTTON — only visible in edit mode */
+    .card-delete {
+      display: none; position: absolute; top: 0.6rem; left: 0.6rem;
+      width: 20px; height: 20px; border-radius: 50%; background: #e53e3e;
+      color: white; border: none; cursor: pointer; font-size: 11px;
+      align-items: center; justify-content: center; font-weight: 700;
+      line-height: 1; z-index: 10;
+    }
+    body.edit-mode .card-delete { display: flex; }
+    body.edit-mode .card { border-color: rgba(139,99,67,0.4); }
+
     footer {
-      border-top: 0.5px solid var(--rule);
-      padding: 1rem 0 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      border-top: 0.5px solid var(--rule); padding: 1rem 0 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
     }
 
     .footer-left, .footer-right { font-size: 10px; color: var(--ink-muted); }
     .footer-left { letter-spacing: 0.1em; text-transform: uppercase; }
 
+    .footer-actions { display: flex; gap: 12px; align-items: center; }
+
+    .btn-edit {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); background: none; border: none; cursor: pointer;
+      padding: 0; font-family: inherit;
+    }
+    .btn-edit:hover { text-decoration: underline; }
+
+    /* ADD CARD PANEL */
+    .add-panel {
+      display: none; margin-top: 2rem;
+      border: 1px solid var(--rule); border-radius: 8px;
+      padding: 1.5rem; background: var(--white);
+    }
+    body.edit-mode .add-panel { display: block; }
+
+    .add-panel h3 {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+      letter-spacing: 0.04em; margin-bottom: 1.2rem; color: var(--ink);
+    }
+
+    .add-form {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
+    }
+
+    .add-form label {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-muted); display: block; margin-bottom: 4px;
+    }
+
+    .add-form input, .add-form select {
+      width: 100%; padding: 0.6rem 0.8rem;
+      border: 1px solid var(--rule); border-radius: 6px;
+      font-family: inherit; font-size: 13px; color: var(--ink);
+      background: var(--bg); outline: none; transition: border-color 0.15s;
+    }
+    .add-form input:focus, .add-form select:focus { border-color: var(--accent); }
+
+    .field-full { grid-column: span 2; }
+
+    .btn-add {
+      margin-top: 0.8rem; padding: 0.7rem 1.5rem;
+      background: var(--ink); color: var(--white); border: none;
+      border-radius: 6px; font-size: 13px; font-weight: 500;
+      cursor: pointer; font-family: inherit; transition: opacity 0.15s;
+    }
+    .btn-add:hover { opacity: 0.8; }
+
     @media (max-width: 900px) {
       .projects { grid-template-columns: repeat(2, 1fr); }
       header { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+      .add-form { grid-template-columns: 1fr; }
+      .field-full { grid-column: span 1; }
     }
 
     @media (max-width: 540px) {
@@ -170,22 +178,10 @@
     }
 
     /* TRANSITIONS */
-
-    .fx-glitch {
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      opacity: 0;
-      --dest: #0e0e0e;
-    }
-    .fx-glitch .g-slice {
-      position: absolute;
-      left: 0; right: 0;
-      background: var(--ink);
-    }
+    .fx-glitch { position: absolute; inset: 0; background: var(--bg); opacity: 0; --dest: #0e0e0e; }
+    .fx-glitch .g-slice { position: absolute; left: 0; right: 0; background: var(--ink); }
     .fx-glitch.run { animation: glitchBase 0.5s steps(1) forwards; }
     .fx-glitch.run .g-slice { animation: glitchSlice 0.5s steps(1) forwards; }
-
     @keyframes glitchBase {
       0%   { opacity: 1; background: var(--bg); }
       40%  { background: var(--bg); }
@@ -204,21 +200,9 @@
       80% { transform: translateX(0);    opacity: 1; }
       100%{ transform: translateX(0);    opacity: 1; }
     }
-
-    .fx-ink {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      transform: scale(0);
-      transform-origin: center;
-    }
+    .fx-ink { position: absolute; width: 10px; height: 10px; border-radius: 50%; transform: scale(0); transform-origin: center; }
     .fx-ink.run { animation: inkSpread 0.65s cubic-bezier(0.4,0,0.2,1) forwards; }
-    @keyframes inkSpread {
-      0%   { transform: scale(0);   opacity: 1; }
-      100% { transform: scale(320); opacity: 1; }
-    }
-
+    @keyframes inkSpread { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(320); opacity: 1; } }
     .fx-blinds { position: absolute; inset: 0; display: flex; }
     .fx-blinds .blind { flex: 1; transform: scaleY(0); transform-origin: top; }
     .fx-blinds.run .blind { animation: blindDrop 0.4s cubic-bezier(0.4,0,0.2,1) forwards; }
@@ -230,10 +214,7 @@
     .fx-blinds.run .blind:nth-child(6) { animation-delay: 0.20s; }
     .fx-blinds.run .blind:nth-child(7) { animation-delay: 0.24s; }
     .fx-blinds.run .blind:nth-child(8) { animation-delay: 0.28s; }
-    @keyframes blindDrop {
-      0%   { transform: scaleY(0); }
-      100% { transform: scaleY(1); }
-    }
+    @keyframes blindDrop { 0% { transform: scaleY(0); } 100% { transform: scaleY(1); } }
   </style>
 </head>
 <body>
@@ -262,82 +243,143 @@
 
     <main>
       <p class="grid-label">Live projects</p>
-      <div class="projects">
+      <div class="projects" id="projects"></div>
 
-        <a class="card" data-href="https://dodikap1.github.io/BLOG/" data-fx="glitch" data-color="#0d1b2a">
-          <span class="card-fx">Glitch</span>
-          <span class="card-tag">Personal brand</span>
-          <div class="card-name">Donadieu</div>
-          <p class="card-desc">Writing, identity, work. The main thing.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/RetroRoster/" data-fx="ink" data-color="#0a1a0a">
-          <span class="card-fx">Ink</span>
-          <span class="card-tag">E-commerce</span>
-          <div class="card-name">Retro Roster</div>
-          <p class="card-desc">Vintage football shirts. Built for a friend.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/cadencecalendar" data-fx="glitch" data-color="#0f1b2d">
-          <span class="card-fx">Glitch</span>
-          <span class="card-tag">SaaS tool</span>
-          <div class="card-name">CadenceIQ</div>
-          <p class="card-desc">Sales cadence planner powered by Claude.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/London-Live/" data-fx="ink" data-color="#1a2332">
-          <span class="card-fx">Ink</span>
-          <span class="card-tag">Events</span>
-          <div class="card-name">London Live</div>
-          <p class="card-desc">London events with a live borough map.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/MAINBunchNBean/" data-fx="blinds" data-color="#f5e8e4">
-          <span class="card-fx">Blinds</span>
-          <span class="card-tag">Floristry</span>
-          <div class="card-name">Bunch & Bean</div>
-          <p class="card-desc">Landing page for a friend's flower studio.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/Great-Exhibition-road-festival-programme/" data-fx="blinds" data-color="#f0f2f5">
-          <span class="card-fx">Blinds</span>
-          <span class="card-tag">Culture</span>
-          <div class="card-name">Exhibition Road</div>
-          <p class="card-desc">Festival programme planner and guide.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
-        <a class="card" data-href="https://dodikap1.github.io/LinkedIn-Game/" data-fx="glitch" data-color="#0f1c3a">
-          <span class="card-fx">Glitch</span>
-          <span class="card-tag">Game</span>
-          <div class="card-name">BREACH</div>
-          <p class="card-desc">Daily network defence puzzle. Built for Reliance Cyber.</p>
-          <span class="card-arrow">↗</span>
-        </a>
-
+      <!-- ADD CARD PANEL — only visible in edit mode -->
+      <div class="add-panel">
+        <h3>Add a new link</h3>
+        <div class="add-form">
+          <div>
+            <label>Name</label>
+            <input type="text" id="newName" placeholder="e.g. World Cup 2026">
+          </div>
+          <div>
+            <label>Tag</label>
+            <input type="text" id="newTag" placeholder="e.g. Football">
+          </div>
+          <div class="field-full">
+            <label>URL</label>
+            <input type="url" id="newUrl" placeholder="https://...">
+          </div>
+          <div>
+            <label>Description</label>
+            <input type="text" id="newDesc" placeholder="One line about it">
+          </div>
+          <div>
+            <label>Transition</label>
+            <select id="newFx">
+              <option value="glitch">Glitch</option>
+              <option value="ink">Ink</option>
+              <option value="blinds">Blinds</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-add" onclick="addCard()">Add to portal</button>
       </div>
     </main>
 
     <footer>
       <span class="footer-left">dodikap1.github.io</span>
-      <span class="footer-right" id="clock"></span>
+      <div class="footer-actions">
+        <button class="btn-edit" id="editBtn" onclick="toggleEdit()">Edit</button>
+        <span class="footer-right" id="clock"></span>
+      </div>
     </footer>
   </div>
 
   <script>
-    function tick() {
-      const now = new Date();
-      document.getElementById('clock').textContent =
-        now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-    }
-    tick();
-    setInterval(tick, 30000);
+    // ── HARDCODED CARDS (always shown, not deletable) ──
+    const STATIC_CARDS = [
+      { name:'Donadieu',      tag:'Personal brand', desc:'Writing, identity, work. The main thing.',          href:'https://dodikap1.github.io/BLOG/',                                    fx:'glitch', color:'#0d1b2a' },
+      { name:'Retro Roster',  tag:'E-commerce',     desc:'Vintage football shirts. Built for a friend.',       href:'https://dodikap1.github.io/RetroRoster/',                             fx:'ink',    color:'#0a1a0a' },
+      { name:'CadenceIQ',     tag:'SaaS tool',      desc:'Sales cadence planner powered by Claude.',           href:'https://dodikap1.github.io/cadencecalendar',                          fx:'glitch', color:'#0f1b2d' },
+      { name:'London Live',   tag:'Events',         desc:'London events with a live borough map.',              href:'https://dodikap1.github.io/London-Live/',                             fx:'ink',    color:'#1a2332' },
+      { name:'Bunch & Bean',  tag:'Floristry',      desc:"Landing page for a friend's flower studio.",         href:'https://dodikap1.github.io/MAINBunchNBean/',                           fx:'blinds', color:'#f5e8e4' },
+      { name:'Exhibition Road',tag:'Culture',       desc:'Festival programme planner and guide.',               href:'https://dodikap1.github.io/Great-Exhibition-road-festival-programme/', fx:'blinds', color:'#f0f2f5' },
+      { name:'BREACH',        tag:'Game',           desc:'Daily network defence puzzle.',                       href:'https://dodikap1.github.io/LinkedIn-Game/',                           fx:'glitch', color:'#0f1c3a' },
+    ];
 
+    // ── DYNAMIC CARDS (user-added, stored in localStorage) ──
+    function getCustomCards() {
+      try { return JSON.parse(localStorage.getItem('portal_cards') || '[]'); } catch(e) { return []; }
+    }
+    function saveCustomCards(cards) {
+      localStorage.setItem('portal_cards', JSON.stringify(cards));
+    }
+
+    // ── RENDER ──
+    function renderCards() {
+      const container = document.getElementById('projects');
+      container.innerHTML = '';
+      const custom = getCustomCards();
+      const all = [...STATIC_CARDS, ...custom];
+
+      all.forEach((card, i) => {
+        const isCustom = i >= STATIC_CARDS.length;
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.dataset.href = card.href;
+        a.dataset.fx = card.fx || 'glitch';
+        a.dataset.color = card.color || '#0e0e0e';
+        a.href = '#';
+        a.innerHTML =
+          (isCustom ? '<button class="card-delete" onclick="deleteCard(' + (i - STATIC_CARDS.length) + '); event.stopPropagation();">×</button>' : '') +
+          '<span class="card-fx">' + (card.fx || 'glitch') + '</span>' +
+          '<span class="card-tag">' + (card.tag || '') + '</span>' +
+          '<div class="card-name">' + card.name + '</div>' +
+          '<p class="card-desc">' + (card.desc || '') + '</p>' +
+          '<span class="card-arrow">↗</span>';
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (document.body.classList.contains('edit-mode')) return;
+          const rect = this.getBoundingClientRect();
+          runFx(this.dataset.fx, rect.left + rect.width/2, rect.top + rect.height/2, this.dataset.href, this.dataset.color);
+        });
+        container.appendChild(a);
+      });
+    }
+
+    function deleteCard(customIndex) {
+      const cards = getCustomCards();
+      cards.splice(customIndex, 1);
+      saveCustomCards(cards);
+      renderCards();
+    }
+
+    function addCard() {
+      const name = document.getElementById('newName').value.trim();
+      const url  = document.getElementById('newUrl').value.trim();
+      if (!name || !url) { alert('Name and URL are required.'); return; }
+      const card = {
+        name,
+        tag:  document.getElementById('newTag').value.trim() || 'Link',
+        desc: document.getElementById('newDesc').value.trim(),
+        href: url,
+        fx:   document.getElementById('newFx').value,
+        color: '#0e0e0e',
+      };
+      const cards = getCustomCards();
+      cards.push(card);
+      saveCustomCards(cards);
+      renderCards();
+      // Clear form
+      ['newName','newTag','newUrl','newDesc'].forEach(id => document.getElementById(id).value = '');
+    }
+
+    // ── EDIT MODE ──
+    function toggleEdit() {
+      const editing = document.body.classList.toggle('edit-mode');
+      document.getElementById('editBtn').textContent = editing ? 'Done' : 'Edit';
+    }
+
+    // ── CLOCK ──
+    function tick() {
+      document.getElementById('clock').textContent =
+        new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+    }
+    tick(); setInterval(tick, 30000);
+
+    // ── TRANSITIONS ──
     const overlay = document.getElementById('overlay');
 
     function resetOverlay() {
@@ -353,13 +395,11 @@
 
     function runFx(fx, cx, cy, url, color) {
       overlay.style.pointerEvents = 'all';
-
       if (fx === 'glitch') {
         const el = document.getElementById('fx-glitch');
         el.style.setProperty('--dest', color);
         el.classList.add('run');
         setTimeout(() => { window.open(url, '_blank'); resetOverlay(); }, 460);
-
       } else if (fx === 'ink') {
         const el = document.getElementById('fx-ink');
         el.style.background = color;
@@ -367,7 +407,6 @@
         el.style.top  = (cy - 5) + 'px';
         el.classList.add('run');
         setTimeout(() => { window.open(url, '_blank'); resetOverlay(); }, 580);
-
       } else if (fx === 'blinds') {
         const el = document.getElementById('fx-blinds');
         el.querySelectorAll('.blind').forEach(b => b.style.background = color);
@@ -376,14 +415,8 @@
       }
     }
 
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        e.preventDefault();
-        const { href: url, fx, color = '#0e0e0e' } = this.dataset;
-        const rect = this.getBoundingClientRect();
-        runFx(fx, rect.left + rect.width / 2, rect.top + rect.height / 2, url, color);
-      });
-    });
+    // ── INIT ──
+    renderCards();
   </script>
 </body>
 </html>
